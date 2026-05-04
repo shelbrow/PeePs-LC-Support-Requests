@@ -1,0 +1,937 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07182D">
+  <title>People Partner/Leader Consultant Support Requests</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['system-ui', 'Segoe UI', 'Roboto', 'sans-serif'] }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --pp-bg: #07182D;
+      --pp-card: #0D2240;
+      --pp-cyan: #02C8FF;
+      --pp-pink: #FF007F;
+      --pp-orange: #FF9000;
+      --pp-text: #FFFFFF;
+      --pp-muted: #B4B9C0;
+      --pp-border: rgba(2, 200, 255, 0.22);
+      --pp-glow: rgba(2, 200, 255, 0.45);
+    }
+    body { background-color: var(--pp-bg); color: var(--pp-text); }
+    .dashboard-title {
+      background: linear-gradient(105deg, var(--pp-cyan) 0%, #ffffff 42%, var(--pp-cyan) 88%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 20px rgba(2, 200, 255, 0.35));
+    }
+    .pp-card {
+      background: var(--pp-card);
+      border: 1px solid var(--pp-border);
+      transition: box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+    .pp-card:hover {
+      border-color: rgba(2, 200, 255, 0.42);
+      box-shadow: 0 0 0 1px rgba(2, 200, 255, 0.15), 0 14px 44px rgba(2, 200, 255, 0.07);
+    }
+    .theme-responses-panel {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+    }
+    .theme-responses-panel.is-expanded {
+      max-height: 4000px;
+      opacity: 1;
+    }
+    .kanban-col-title {
+      font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.45rem;
+      border-bottom-width: 3px;
+      border-bottom-style: solid;
+    }
+    .theme-status[data-status="already_built"]:focus {
+      box-shadow: 0 0 0 2px rgba(2, 200, 255, 0.45);
+    }
+    .theme-status[data-status="in_progress"]:focus {
+      box-shadow: 0 0 0 2px rgba(255, 144, 0, 0.45);
+    }
+    .theme-status[data-status="not_planned"]:focus {
+      box-shadow: 0 0 0 2px rgba(255, 0, 127, 0.45);
+    }
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:system-ui, Segoe UI, Roboto, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.sticky{position:sticky}.top-0{top:0px}.z-20{z-index:20}.mx-auto{margin-left:auto;margin-right:auto}.-mx-4{margin-left:-1rem;margin-right:-1rem}.-mx-1{margin-left:-0.25rem;margin-right:-0.25rem}.mb-10{margin-bottom:2.5rem}.mt-5{margin-top:1.25rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mt-4{margin-top:1rem}.mb-0\.5{margin-bottom:0.125rem}.mb-1{margin-bottom:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.mb-3{margin-bottom:0.75rem}.mt-2{margin-top:0.5rem}.line-clamp-2{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.max-h-\[14rem\]{max-height:14rem}.max-h-\[70vh\]{max-height:70vh}.min-h-screen{min-height:100vh}.min-h-\[7\.5rem\]{min-height:7.5rem}.min-h-\[5\.5rem\]{min-height:5.5rem}.w-full{width:100%}.w-\[232px\]{width:232px}.min-w-0{min-width:0px}.max-w-\[1400px\]{max-width:1400px}.max-w-3xl{max-width:48rem}.max-w-xl{max-width:36rem}.max-w-full{max-width:100%}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}.shrink-0{flex-shrink:0}.resize-y{resize:vertical}.list-none{list-style-type:none}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.flex-nowrap{flex-wrap:nowrap}.items-center{align-items:center}.items-stretch{align-items:stretch}.gap-14{gap:3.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-1\.5{gap:0.375rem}.gap-10{gap:2.5rem}.gap-5{gap:1.25rem}.gap-8{gap:2rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.whitespace-nowrap{white-space:nowrap}.whitespace-pre-wrap{white-space:pre-wrap}.rounded{border-radius:0.25rem}.rounded-xl{border-radius:0.75rem}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-l-2{border-left-width:2px}.border-transparent{border-color:transparent}.p-6{padding:1.5rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.pb-24{padding-bottom:6rem}.pb-8{padding-bottom:2rem}.pb-0{padding-bottom:0px}.pb-0\.5{padding-bottom:0.125rem}.pl-2{padding-left:0.5rem}.pr-1{padding-right:0.25rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-5xl{font-size:3rem;line-height:1}.text-\[10px\]{font-size:10px}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.font-normal{font-weight:400}.uppercase{text-transform:uppercase}.italic{font-style:italic}.tabular-nums{--tw-numeric-spacing:tabular-nums;font-variant-numeric:var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)}.leading-relaxed{line-height:1.625}.leading-none{line-height:1}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.tracking-wider{letter-spacing:0.05em}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.outline-none{outline:2px solid transparent;outline-offset:2px}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:border-cyan-500\/40:hover{border-color:rgb(6 182 212 / 0.4)}.hover\:border-white\/10:hover{border-color:rgb(255 255 255 / 0.1)}.hover\:brightness-110:hover{--tw-brightness:brightness(1.1);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.focus\:border-cyan-400:focus{--tw-border-opacity:1;border-color:rgb(34 211 238 / var(--tw-border-opacity, 1))}.focus\:border-cyan-400\/50:focus{border-color:rgb(34 211 238 / 0.5)}@media (min-width: 640px){.sm\:w-\[252px\]{width:252px}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}}@media (min-width: 1024px){.lg\:sticky{position:sticky}.lg\:top-24{top:6rem}.lg\:w-80{width:20rem}.lg\:w-\[268px\]{width:268px}.lg\:flex-row{flex-direction:row}.lg\:items-start{align-items:flex-start}.lg\:gap-8{gap:2rem}.lg\:self-start{align-self:flex-start}.lg\:p-7{padding:1.75rem}.lg\:pr-2{padding-right:0.5rem}}@media (min-width: 1280px){.xl\:gap-10{gap:2.5rem}}</style></head>
+<body class="antialiased min-h-screen" style="background-color:#07182D;color:#FFFFFF;">
+  <!-- Saved dashboard data: replaced on Save / Finalize with const SAVED_STATE = {...} -->
+  <script id="pp-inline-saved-state">
+const SAVED_STATE = {"version":4,"finalized":false,"previewMode":false,"csvText":"Poll Question,Poll Option,Count,Total Votes,Results\nWhat support do you feel is missing that would make your experience of the Performance program easier?,\"extremely crisp instructions/support on how to complete and monitor your data vs lengthy, multiple sources that can lean 'aspirational' or hr-coded rather than need-to-know/practical/user friendly\",1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,Visibility into team and org talent planning. Any changes?,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,Having more on the “why” on how program decisions are made in service to the business ,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,Automated reports or reminders with %completion to atleast director plus level would be helpful. ,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,Moving talent assessments post manager change was impossible - the support teams wouldn’t help make exceptions to move these to new manager ,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,It feels like a check box exercise and in some ways circuit makes it worse.  Lots of words and the experience is not great for the team members,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,I see you all working hard thank you! ,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,I think we need to be clearer with leaders on what the labels like CTR will mean (eg stock prioritization). Know we’re working toward clarity and we are making progress but still feels squishy. ,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,CTR wasn’t marked as required and sometimes blank and the 20% isn’t forced so requires rework ,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,more clarity to the business in how we are listening to and solving for their needs/asks via the program,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,I hope we fixed the view for the calibration and grid planning ,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,More concise comms to Leaders (including potentially a one pager cheat sheet?). They often come to Peeps directly for questions first because guides are lengthy ,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,Ensuring the needs and voice of the business are represented and incorporated,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,\"Lighter lift for people partners- if feels that we own comms, change management, tool support, and strategy. we own way too much of the process. Would love for our role to be more as a consultant \",1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,\"Better connection to other P&C actions. For example, embedding inclusion verbiage and rewards language to performance comms and FAQs. Helping us show up as 1 P&C \",1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,clarity of the conversations and NME guidance,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,\"Critical to retain helps, but still feel like there’s a gap in understanding where people stand with performance and CTR doesn’t capture full story \",1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,Talent Review digitization and tooling ,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,\"A \"\"phone a friend\"\" for questions instead of a form or asking Circuit\",1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,Don’t have a separate talent assessment module from org/team talent planning ,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,\"having the talent assessment and focal be closer together so that the assessment cycle doesn't feel like it is always on\n\",1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,Need changes to feel different to managers to show progress and that we are listening to front line leaders ,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,Understanding on if we are shifting to measuring / rewarding potential or performance? ,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,Guidance and more robust definitions of what NME is and is not - for leaders in the Talent Assessment oand/or FAQs  ,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,\"There is an opportunity to figure out the change management, comms, etc. in a more simple way. This is where there is often churn. \",1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,not going back when we say no MYE/EOY exceptions,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,Access to spot check whether the reviews were impactful.  ,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,\"Clearer comms to Leaders\n\",1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,a use case scanario end to end (starting from reflection all the way to TR and team and org planning),1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,business alignment and clear actions related to talent definitions,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,Automate the status reports so they stop asking me to pull updates of who submitted or make it really clear where dashboards are,1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,\"Clarity on comms being sent to Leaders , like NME removals and MYA exceptions\",1,20,\nWhat support do you feel is missing that would make your experience of the Performance program easier?,More advance notice of changes to definitions and processes ,1,20,\nI understand the Q4 updates.,5,8,17,4.5\nI understand where to get support if needed.,5,13,18,4.7\nThe listening results and support discussion was a valuable use of my time.,5,12,18,4.7","themes":[{"id":"theme-1","title":"Clearer, More Practical Communications & Guidance","summary":"Requests for simpler, more direct, and actionable guidance — less jargon-heavy and lengthy content.","examples":["Extremely crisp instructions/support on how to complete and monitor your data vs lengthy, multiple sources that can lean 'aspirational' or hr-coded rather than need-to-know/practical/user friendly","More concise comms to Leaders (including potentially a one pager cheat sheet?). They often come to Peeps directly for questions first because guides are lengthy","Clearer comms to Leaders","Clarity on comms being sent to Leaders, like NME removals and MYA exceptions","There is an opportunity to figure out the change management, comms, etc. in a more simple way. This is where there is often churn."],"status":"in_progress","notes":"Q4FY26: Workday, Leader Actions, and Performance bot content will be simplified. Q2FY27: As we evolve Performance, we are evaluating the names of the Performance actions and fully rewriting the Performance narrative in plain, straightforward language."},{"id":"theme-2","title":"Increased Transparency on Program Changes","summary":"Leaders and partners need more visibility into why program decisions are made and how employee needs are incorporated.","examples":["Having more on the 'why' on how program decisions are made in service to the business","More clarity to the business in how we are listening to and solving for their needs/asks via the program","Ensuring the needs and voice of the business are represented and incorporated","Business alignment and clear actions related to talent definitions","More advance notice of changes to definitions and processes","Need changes to feel different to managers to show progress and that we are listening to front line leaders"],"status":"already_built","notes":"Q2FY26 Leader Training: Every slide included a \"what we heard\" bucket before presenting the update. Q4FY26: Leader training will include direct references to how listening results inform program updates. September: Q4 listening results will be shared back with leaders and PeePs/LC when available."},{"id":"theme-3","title":"Clearer Definitions & Consistent Program Rules","summary":"Ambiguity in labels like CTR and NME, inconsistent rule enforcement, and the need for sharper, consistently applied definitions.","examples":["Need to be clearer with leaders on what the labels like CTR will mean (e.g. stock prioritization)","CTR wasn't marked as required and sometimes blank and the 20% isn't forced so requires rework","Guidance and more robust definitions of what NME is and is not - for leaders in the Talent Assessment and/or FAQs","Clarity of the conversations and NME guidance","Not going back when we say no MYE/EOY exceptions","Critical to retain helps, but still feel like there's a gap in understanding where people stand with performance and CTR doesn't capture full story"],"status":"already_built","notes":"Updated guidance has been provided in Workday and throughout Performance collateral for Critical to Retain, Meeting/Not Meeting Expectations, and Guiding Principles and Leadership Expectations. "},{"id":"theme-4","title":"Stronger Team & Org Talent Planning and Rewards Connection","summary":"Better visibility into talent planning, assessment cycles, and org changes — with more advance notice and end-to-end context.","examples":["Visibility into team and org talent planning. Any changes?","Don't have a separate talent assessment module from org/team talent planning","Having the talent assessment and focal be closer together so that the assessment cycle doesn't feel like it is always on","A use case scenario end to end (starting from reflection all the way to TR and team and org planning)","Understanding on if we are shifting to measuring / rewarding potential or performance?"],"status":"not_planned","notes":"Once we evolve the Check-In experience, our next step is to revisit the Calibration module. "},{"id":"theme-5","title":"Tooling, Automation & Reporting","summary":"Requests to reduce manual work through automation, better dashboards, and improved tooling for talent review and status reporting.","examples":["Automated reports or reminders with % completion to at least director plus level would be helpful","Talent Review digitization and tooling","Automate the status reports so they stop asking me to pull updates of who submitted or make it really clear where dashboards are","Moving talent assessments post manager change was impossible - the support teams wouldn't help make exceptions","Access to spot check whether the reviews were impactful","It feels like a check box exercise and in some ways Circuit makes it worse. Lots of words and the experience is not great for the team members"],"status":"in_progress","notes":"Now: Leaders can  ask CIRCUIT for Talent Assessment completion updates and also use People Insights. FY27: As we evolve Performance, we will deliver connected data, advanced performance insights, and AI-enabled capabilities."},{"id":"theme-6","title":"People Partner Role Clarity & Workload","summary":"PPs are owning too much of the process and want to operate more as consultants, with better cross-P&C integration and easier access to support.","examples":["Lighter lift for people partners - it feels that we own comms, change management, tool support, and strategy. We own way too much of the process. Would love for our role to be more as a consultant","Better connection to other P&C actions. For example, embedding inclusion verbiage and rewards language to performance comms and FAQs. Helping us show up as 1 P&C","A 'phone a friend' for questions instead of a form or asking Circuit"],"status":"already_built","notes":"Your Leader Consultant is your \"phone a friend\" for support. The People Guide, P&C Assistant in CIRCUIT, HelpZone articles, and Performance site have all the resources you need. Sending org-specific comms is optional. Performance leader training includes Rewards content, and Rewards leader training includes ties back to Performance — helping P&C show up as one team."}],"ratingsSnapshot":[{"question":"I understand the Q4 updates.","average":4.5,"totalVotes":17,"responseCount":17,"byOption":{"5":8},"rawRows":[{"question":"I understand the Q4 updates.","pollOption":"5","count":8,"totalVotes":17,"results":"4.5"}]},{"question":"I understand where to get support if needed.","average":4.7,"totalVotes":18,"responseCount":18,"byOption":{"5":13},"rawRows":[{"question":"I understand where to get support if needed.","pollOption":"5","count":13,"totalVotes":18,"results":"4.7"}]},{"question":"The listening results and support discussion was a valuable use of my time.","average":4.7,"totalVotes":18,"responseCount":18,"byOption":{"5":12},"rawRows":[{"question":"The listening results and support discussion was a valuable use of my time.","pollOption":"5","count":12,"totalVotes":18,"results":"4.7"}]}]};
+console.log("State loaded:", SAVED_STATE);
+</script>
+
+  <div id="app" class="max-w-[1400px] mx-auto px-4 sm:px-6 py-10 pb-24">
+    <header class="mb-10 border-b pb-8" style="border-color: rgba(2, 200, 255, 0.2);">
+      <h1 class="dashboard-title text-3xl sm:text-4xl font-bold tracking-tight">People Partner/Leader Consultant Support Requests</h1>
+      <p id="finalized-banner" class="hidden mt-5 text-sm rounded-xl px-4 py-3 border" style="background:rgba(2,200,255,0.08);border-color:rgba(2,200,255,0.35);color:#B4B9C0;">
+        Locked — editing is disabled. Use <strong style="color:#FFFFFF;">File → Save As</strong> in your browser to export for GitHub Pages. To edit again, open an unlocked saved file or set <code class="px-1.5 py-0.5 rounded" style="background:rgba(255,0,127,0.15);color:#02C8FF;">"finalized":false</code> inside <code class="px-1.5 py-0.5 rounded" style="background:rgba(255,0,127,0.15);color:#02C8FF;">SAVED_STATE</code> at the top of the file.
+      </p>
+    </header>
+
+    <!-- Baked-in CSV export (standalone; no upload). Edit page source to refresh snapshot. -->
+    <script type="text/plain" id="baked-csv-data">
+Poll Question,Poll Option,Count,Total Votes,Results
+What support do you feel is missing that would make your experience of the Performance program easier?,"extremely crisp instructions/support on how to complete and monitor your data vs lengthy, multiple sources that can lean 'aspirational' or hr-coded rather than need-to-know/practical/user friendly",1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,Visibility into team and org talent planning. Any changes?,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,Having more on the “why” on how program decisions are made in service to the business ,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,Automated reports or reminders with %completion to atleast director plus level would be helpful. ,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,Moving talent assessments post manager change was impossible - the support teams wouldn’t help make exceptions to move these to new manager ,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,It feels like a check box exercise and in some ways circuit makes it worse.  Lots of words and the experience is not great for the team members,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,I see you all working hard thank you! ,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,I think we need to be clearer with leaders on what the labels like CTR will mean (eg stock prioritization). Know we’re working toward clarity and we are making progress but still feels squishy. ,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,CTR wasn’t marked as required and sometimes blank and the 20% isn’t forced so requires rework ,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,more clarity to the business in how we are listening to and solving for their needs/asks via the program,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,I hope we fixed the view for the calibration and grid planning ,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,More concise comms to Leaders (including potentially a one pager cheat sheet?). They often come to Peeps directly for questions first because guides are lengthy ,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,Ensuring the needs and voice of the business are represented and incorporated,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,"Lighter lift for people partners- if feels that we own comms, change management, tool support, and strategy. we own way too much of the process. Would love for our role to be more as a consultant ",1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,"Better connection to other P&C actions. For example, embedding inclusion verbiage and rewards language to performance comms and FAQs. Helping us show up as 1 P&C ",1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,clarity of the conversations and NME guidance,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,"Critical to retain helps, but still feel like there’s a gap in understanding where people stand with performance and CTR doesn’t capture full story ",1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,Talent Review digitization and tooling ,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,"A ""phone a friend"" for questions instead of a form or asking Circuit",1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,Don’t have a separate talent assessment module from org/team talent planning ,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,"having the talent assessment and focal be closer together so that the assessment cycle doesn't feel like it is always on
+",1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,Need changes to feel different to managers to show progress and that we are listening to front line leaders ,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,Understanding on if we are shifting to measuring / rewarding potential or performance? ,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,Guidance and more robust definitions of what NME is and is not - for leaders in the Talent Assessment oand/or FAQs  ,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,"There is an opportunity to figure out the change management, comms, etc. in a more simple way. This is where there is often churn. ",1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,not going back when we say no MYE/EOY exceptions,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,Access to spot check whether the reviews were impactful.  ,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,"Clearer comms to Leaders
+",1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,a use case scanario end to end (starting from reflection all the way to TR and team and org planning),1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,business alignment and clear actions related to talent definitions,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,Automate the status reports so they stop asking me to pull updates of who submitted or make it really clear where dashboards are,1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,"Clarity on comms being sent to Leaders , like NME removals and MYA exceptions",1,20,
+What support do you feel is missing that would make your experience of the Performance program easier?,More advance notice of changes to definitions and processes ,1,20,
+I understand the Q4 updates.,5,8,17,4.5
+I understand where to get support if needed.,5,13,18,4.7
+The listening results and support discussion was a valuable use of my time.,5,12,18,4.7
+    </script>
+
+    <!-- Actions -->
+    <div id="action-bar" class="flex flex-wrap items-center gap-3 mb-10 sticky top-0 z-20 py-3 -mx-4 px-4 backdrop-blur-md" style="background:rgba(7,24,45,0.92);">
+      <div class="flex items-center gap-2 flex-wrap">
+      <button type="button" id="btn-save" class="rounded-lg px-5 py-2.5 text-sm font-semibold transition hover:brightness-110" style="background:rgba(2,200,255,0.15);border:1px solid rgba(2,200,255,0.45);color:#02C8FF;">
+        Save Changes
+      </button>
+      <span id="save-toast" class="text-sm font-semibold whitespace-nowrap hidden" style="color:#02C8FF;" role="status" aria-live="polite">✓ Changes saved!</span>
+      </div>
+      <button type="button" id="btn-preview-final" class="rounded-lg px-5 py-2.5 text-sm font-semibold text-white transition hover:brightness-110" style="background:linear-gradient(135deg,#FF007F,#FF9000);box-shadow:0 4px 20px rgba(255,0,127,0.25);">
+        Preview Final View
+      </button>
+      <button type="button" id="btn-edit-mode" class="rounded-lg px-5 py-2.5 text-sm font-semibold transition hover:brightness-110 hidden" style="background:rgba(255,144,0,0.18);border:1px solid rgba(255,144,0,0.55);color:#FF9000;">
+        Edit Mode
+      </button>
+      <button type="button" id="btn-finalize-lock" class="rounded-lg px-5 py-2.5 text-sm font-semibold transition hover:brightness-110" style="background:rgba(255,0,127,0.2);border:1px solid rgba(255,0,127,0.6);color:#FF007F;">
+        Finalize &amp; Lock
+      </button>
+    </div>
+
+    <!-- Themes + scores: themes left, training scores sidebar top-right (lg+) -->
+    <section class="mb-16">
+      <h2 class="text-xl font-bold mb-2" style="color:#02C8FF;">Support Request Themes by Completion Status</h2>
+      <p id="section1-intro" class="text-sm mb-8 leading-relaxed max-w-3xl" style="color:#B4B9C0;">View the themes of support requests by status - Already Built, In Progress, or Future Step. Each theme has a summary and comments from the Performance team.</p>
+
+      <div id="themes-ratings-layout" class="flex flex-col lg:flex-row lg:items-start gap-10 lg:gap-8 xl:gap-10 max-w-full">
+        <div id="themes-column" class="min-w-0 flex-1 lg:pr-2">
+          <div id="themes-container"><div class="flex flex-col gap-5"><div class="pp-kanban-column flex flex-col gap-3" data-status="already_built"><div class="kanban-col-title w-full" style="color: rgb(2, 200, 255); border-bottom-color: rgba(2, 200, 255, 0.55);">Already Built</div><div class="flex flex-nowrap gap-2 w-full min-w-0 items-stretch overflow-x-auto pb-0"><article class="pp-card rounded-lg px-3 py-2.5 flex-shrink-0 w-[232px] sm:w-[252px] lg:w-[268px]" data-theme-id="theme-2"><h3 class="text-sm font-bold theme-title-edit outline-none mb-1 border-b border-transparent hover:border-cyan-500/40 focus:border-cyan-400 pb-0.5 leading-tight" style="color:#02C8FF;" contenteditable="true">Increased Transparency on Program Changes</h3><p class="text-xs theme-summary-edit outline-none mb-1.5 leading-snug border border-transparent hover:border-white/10 rounded px-1 -mx-1 py-0.5 focus:border-cyan-400/50" style="color:#B4B9C0;" contenteditable="true">Leaders and partners need more visibility into why program decisions are made and how employee needs are incorporated.</p><div class="grid sm:grid-cols-2 gap-1.5 mb-1"><div><label class="block text-[10px] font-bold uppercase tracking-wider mb-0.5" style="color:#B4B9C0;">Status</label><select class="theme-status w-full rounded-md px-2 py-1 text-xs outline-none" data-status="already_built" style="background:#08182f;color:#fff;border:1px solid rgba(2,200,255,0.55);"><option value="already_built" selected="">Already Built</option><option value="in_progress">In Progress</option><option value="not_planned">Future Step</option></select></div><div><label class="theme-notes-label block text-[10px] font-bold uppercase tracking-wider mb-0.5" style="color:#B4B9C0;">Where to find it</label><textarea class="theme-notes w-full rounded-md px-2.5 py-2 text-xs min-h-[7.5rem] max-h-[14rem] outline-none resize-y overflow-y-auto" rows="6" style="background:#08182f;border:1px solid rgba(255,255,255,0.12);color:#FFFFFF;" placeholder="">Q2FY26 Leader Training: Every slide included a "what we heard" bucket before presenting the update. Q4FY26: Leader training will include direct references to how listening results inform program updates. September: Q4 listening results will be shared back with leaders and PeePs/LC when available.</textarea></div></div><button type="button" class="theme-toggle-btn mt-2 w-full rounded-md px-2 py-1 text-xs font-semibold transition hover:brightness-110" style="background:rgba(2,200,255,0.12);border:1px solid rgba(2,200,255,0.4);color:#02C8FF;" aria-expanded="false">View Responses ▾</button><div class="theme-responses-panel" aria-hidden="true"><ul class="space-y-2 mt-2 max-h-[70vh] overflow-y-auto pr-1 list-none"><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="0">Having more on the 'why' on how program decisions are made in service to the business</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="1">More clarity to the business in how we are listening to and solving for their needs/asks via the program</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="2">Ensuring the needs and voice of the business are represented and incorporated</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="3">Business alignment and clear actions related to talent definitions</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="4">More advance notice of changes to definitions and processes</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="5">Need changes to feel different to managers to show progress and that we are listening to front line leaders</li></ul></div></article><article class="pp-card rounded-lg px-3 py-2.5 flex-shrink-0 w-[232px] sm:w-[252px] lg:w-[268px]" data-theme-id="theme-3"><h3 class="text-sm font-bold theme-title-edit outline-none mb-1 border-b border-transparent hover:border-cyan-500/40 focus:border-cyan-400 pb-0.5 leading-tight" style="color:#02C8FF;" contenteditable="true">Clearer Definitions &amp; Consistent Program Rules</h3><p class="text-xs theme-summary-edit outline-none mb-1.5 leading-snug border border-transparent hover:border-white/10 rounded px-1 -mx-1 py-0.5 focus:border-cyan-400/50" style="color:#B4B9C0;" contenteditable="true">Ambiguity in labels like CTR and NME, inconsistent rule enforcement, and the need for sharper, consistently applied definitions.</p><div class="grid sm:grid-cols-2 gap-1.5 mb-1"><div><label class="block text-[10px] font-bold uppercase tracking-wider mb-0.5" style="color:#B4B9C0;">Status</label><select class="theme-status w-full rounded-md px-2 py-1 text-xs outline-none" data-status="already_built" style="background:#08182f;color:#fff;border:1px solid rgba(2,200,255,0.55);"><option value="already_built" selected="">Already Built</option><option value="in_progress">In Progress</option><option value="not_planned">Future Step</option></select></div><div><label class="theme-notes-label block text-[10px] font-bold uppercase tracking-wider mb-0.5" style="color:#B4B9C0;">Where to find it</label><textarea class="theme-notes w-full rounded-md px-2.5 py-2 text-xs min-h-[7.5rem] max-h-[14rem] outline-none resize-y overflow-y-auto" rows="6" style="background:#08182f;border:1px solid rgba(255,255,255,0.12);color:#FFFFFF;" placeholder="">Updated guidance has been provided in Workday and throughout Performance collateral for Critical to Retain, Meeting/Not Meeting Expectations, and Guiding Principles and Leadership Expectations. </textarea></div></div><button type="button" class="theme-toggle-btn mt-2 w-full rounded-md px-2 py-1 text-xs font-semibold transition hover:brightness-110" style="background:rgba(2,200,255,0.12);border:1px solid rgba(2,200,255,0.4);color:#02C8FF;" aria-expanded="false">View Responses ▾</button><div class="theme-responses-panel" aria-hidden="true"><ul class="space-y-2 mt-2 max-h-[70vh] overflow-y-auto pr-1 list-none"><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="0">Need to be clearer with leaders on what the labels like CTR will mean (e.g. stock prioritization)</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="1">CTR wasn't marked as required and sometimes blank and the 20% isn't forced so requires rework</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="2">Guidance and more robust definitions of what NME is and is not - for leaders in the Talent Assessment and/or FAQs</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="3">Clarity of the conversations and NME guidance</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="4">Not going back when we say no MYE/EOY exceptions</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="5">Critical to retain helps, but still feel like there's a gap in understanding where people stand with performance and CTR doesn't capture full story</li></ul></div></article><article class="pp-card rounded-lg px-3 py-2.5 flex-shrink-0 w-[232px] sm:w-[252px] lg:w-[268px]" data-theme-id="theme-6"><h3 class="text-sm font-bold theme-title-edit outline-none mb-1 border-b border-transparent hover:border-cyan-500/40 focus:border-cyan-400 pb-0.5 leading-tight" style="color:#02C8FF;" contenteditable="true">People Partner Role Clarity &amp; Workload</h3><p class="text-xs theme-summary-edit outline-none mb-1.5 leading-snug border border-transparent hover:border-white/10 rounded px-1 -mx-1 py-0.5 focus:border-cyan-400/50" style="color:#B4B9C0;" contenteditable="true">PPs are owning too much of the process and want to operate more as consultants, with better cross-P&amp;C integration and easier access to support.</p><div class="grid sm:grid-cols-2 gap-1.5 mb-1"><div><label class="block text-[10px] font-bold uppercase tracking-wider mb-0.5" style="color:#B4B9C0;">Status</label><select class="theme-status w-full rounded-md px-2 py-1 text-xs outline-none" data-status="already_built" style="background:#08182f;color:#fff;border:1px solid rgba(2,200,255,0.55);"><option value="already_built" selected="">Already Built</option><option value="in_progress">In Progress</option><option value="not_planned">Future Step</option></select></div><div><label class="theme-notes-label block text-[10px] font-bold uppercase tracking-wider mb-0.5" style="color:#B4B9C0;">Where to find it</label><textarea class="theme-notes w-full rounded-md px-2.5 py-2 text-xs min-h-[7.5rem] max-h-[14rem] outline-none resize-y overflow-y-auto" rows="6" style="background:#08182f;border:1px solid rgba(255,255,255,0.12);color:#FFFFFF;" placeholder="">Your Leader Consultant is your "phone a friend" for support. The People Guide, P&amp;C Assistant in CIRCUIT, HelpZone articles, and Performance site have all the resources you need. Sending org-specific comms is optional. Performance leader training includes Rewards content, and Rewards leader training includes ties back to Performance — helping P&amp;C show up as one team.</textarea></div></div><button type="button" class="theme-toggle-btn mt-2 w-full rounded-md px-2 py-1 text-xs font-semibold transition hover:brightness-110" style="background:rgba(2,200,255,0.12);border:1px solid rgba(2,200,255,0.4);color:#02C8FF;" aria-expanded="false">View Responses ▾</button><div class="theme-responses-panel" aria-hidden="true"><ul class="space-y-2 mt-2 max-h-[70vh] overflow-y-auto pr-1 list-none"><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="0">Lighter lift for people partners - it feels that we own comms, change management, tool support, and strategy. We own way too much of the process. Would love for our role to be more as a consultant</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="1">Better connection to other P&amp;C actions. For example, embedding inclusion verbiage and rewards language to performance comms and FAQs. Helping us show up as 1 P&amp;C</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="2">A 'phone a friend' for questions instead of a form or asking Circuit</li></ul></div></article></div></div><div class="pp-kanban-column flex flex-col gap-3" data-status="in_progress"><div class="kanban-col-title w-full" style="color: rgb(255, 144, 0); border-bottom-color: rgba(255, 144, 0, 0.55);">In Progress</div><div class="flex flex-nowrap gap-2 w-full min-w-0 items-stretch overflow-x-auto pb-0"><article class="pp-card rounded-lg px-3 py-2.5 flex-shrink-0 w-[232px] sm:w-[252px] lg:w-[268px]" data-theme-id="theme-1"><h3 class="text-sm font-bold theme-title-edit outline-none mb-1 border-b border-transparent hover:border-cyan-500/40 focus:border-cyan-400 pb-0.5 leading-tight" style="color:#02C8FF;" contenteditable="true">Clearer, More Practical Communications &amp; Guidance</h3><p class="text-xs theme-summary-edit outline-none mb-1.5 leading-snug border border-transparent hover:border-white/10 rounded px-1 -mx-1 py-0.5 focus:border-cyan-400/50" style="color:#B4B9C0;" contenteditable="true">Requests for simpler, more direct, and actionable guidance — less jargon-heavy and lengthy content.</p><div class="grid sm:grid-cols-2 gap-1.5 mb-1"><div><label class="block text-[10px] font-bold uppercase tracking-wider mb-0.5" style="color:#B4B9C0;">Status</label><select class="theme-status w-full rounded-md px-2 py-1 text-xs outline-none" data-status="in_progress" style="background:#08182f;color:#fff;border:1px solid rgba(255,144,0,0.55);"><option value="already_built">Already Built</option><option value="in_progress" selected="">In Progress</option><option value="not_planned">Future Step</option></select></div><div><label class="theme-notes-label block text-[10px] font-bold uppercase tracking-wider mb-0.5" style="color:#B4B9C0;">Expected release timing</label><textarea class="theme-notes w-full rounded-md px-2.5 py-2 text-xs min-h-[7.5rem] max-h-[14rem] outline-none resize-y overflow-y-auto" rows="6" style="background:#08182f;border:1px solid rgba(255,255,255,0.12);color:#FFFFFF;" placeholder="">Q4FY26: Workday, Leader Actions, and Performance bot content will be simplified. Q2FY27: As we evolve Performance, we are evaluating the names of the Performance actions and fully rewriting the Performance narrative in plain, straightforward language.</textarea></div></div><button type="button" class="theme-toggle-btn mt-2 w-full rounded-md px-2 py-1 text-xs font-semibold transition hover:brightness-110" style="background:rgba(2,200,255,0.12);border:1px solid rgba(2,200,255,0.4);color:#02C8FF;" aria-expanded="false">View Responses ▾</button><div class="theme-responses-panel" aria-hidden="true"><ul class="space-y-2 mt-2 max-h-[70vh] overflow-y-auto pr-1 list-none"><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="0">Extremely crisp instructions/support on how to complete and monitor your data vs lengthy, multiple sources that can lean 'aspirational' or hr-coded rather than need-to-know/practical/user friendly</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="1">More concise comms to Leaders (including potentially a one pager cheat sheet?). They often come to Peeps directly for questions first because guides are lengthy</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="2">Clearer comms to Leaders</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="3">Clarity on comms being sent to Leaders, like NME removals and MYA exceptions</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="4">There is an opportunity to figure out the change management, comms, etc. in a more simple way. This is where there is often churn.</li></ul></div></article><article class="pp-card rounded-lg px-3 py-2.5 flex-shrink-0 w-[232px] sm:w-[252px] lg:w-[268px]" data-theme-id="theme-5"><h3 class="text-sm font-bold theme-title-edit outline-none mb-1 border-b border-transparent hover:border-cyan-500/40 focus:border-cyan-400 pb-0.5 leading-tight" style="color:#02C8FF;" contenteditable="true">Tooling, Automation &amp; Reporting</h3><p class="text-xs theme-summary-edit outline-none mb-1.5 leading-snug border border-transparent hover:border-white/10 rounded px-1 -mx-1 py-0.5 focus:border-cyan-400/50" style="color:#B4B9C0;" contenteditable="true">Requests to reduce manual work through automation, better dashboards, and improved tooling for talent review and status reporting.</p><div class="grid sm:grid-cols-2 gap-1.5 mb-1"><div><label class="block text-[10px] font-bold uppercase tracking-wider mb-0.5" style="color:#B4B9C0;">Status</label><select class="theme-status w-full rounded-md px-2 py-1 text-xs outline-none" data-status="in_progress" style="background:#08182f;color:#fff;border:1px solid rgba(255,144,0,0.55);"><option value="already_built">Already Built</option><option value="in_progress" selected="">In Progress</option><option value="not_planned">Future Step</option></select></div><div><label class="theme-notes-label block text-[10px] font-bold uppercase tracking-wider mb-0.5" style="color:#B4B9C0;">Expected release timing</label><textarea class="theme-notes w-full rounded-md px-2.5 py-2 text-xs min-h-[7.5rem] max-h-[14rem] outline-none resize-y overflow-y-auto" rows="6" style="background:#08182f;border:1px solid rgba(255,255,255,0.12);color:#FFFFFF;" placeholder="">FY27: As we evolve Performance, we will deliver connected data, advanced performance insights, and AI-enabled capabilities.</textarea></div></div><button type="button" class="theme-toggle-btn mt-2 w-full rounded-md px-2 py-1 text-xs font-semibold transition hover:brightness-110" style="background:rgba(2,200,255,0.12);border:1px solid rgba(2,200,255,0.4);color:#02C8FF;" aria-expanded="false">View Responses ▾</button><div class="theme-responses-panel" aria-hidden="true"><ul class="space-y-2 mt-2 max-h-[70vh] overflow-y-auto pr-1 list-none"><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="0">Automated reports or reminders with % completion to at least director plus level would be helpful</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="1">Talent Review digitization and tooling</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="2">Automate the status reports so they stop asking me to pull updates of who submitted or make it really clear where dashboards are</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="3">Moving talent assessments post manager change was impossible - the support teams wouldn't help make exceptions</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="4">Access to spot check whether the reviews were impactful</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="5">It feels like a check box exercise and in some ways Circuit makes it worse. Lots of words and the experience is not great for the team members</li></ul></div></article></div></div><div class="pp-kanban-column flex flex-col gap-3" data-status="not_planned"><div class="kanban-col-title w-full" style="color: rgb(255, 0, 127); border-bottom-color: rgba(255, 0, 127, 0.55);">Future Step</div><div class="flex flex-nowrap gap-2 w-full min-w-0 items-stretch overflow-x-auto pb-0"><article class="pp-card rounded-lg px-3 py-2.5 flex-shrink-0 w-[232px] sm:w-[252px] lg:w-[268px]" data-theme-id="theme-4"><h3 class="text-sm font-bold theme-title-edit outline-none mb-1 border-b border-transparent hover:border-cyan-500/40 focus:border-cyan-400 pb-0.5 leading-tight" style="color:#02C8FF;" contenteditable="true">Stronger Team &amp; Org Talent Planning and Rewards Connection</h3><p class="text-xs theme-summary-edit outline-none mb-1.5 leading-snug border border-transparent hover:border-white/10 rounded px-1 -mx-1 py-0.5 focus:border-cyan-400/50" style="color:#B4B9C0;" contenteditable="true">Better visibility into talent planning, assessment cycles, and org changes — with more advance notice and end-to-end context.</p><div class="grid sm:grid-cols-2 gap-1.5 mb-1"><div><label class="block text-[10px] font-bold uppercase tracking-wider mb-0.5" style="color:#B4B9C0;">Status</label><select class="theme-status w-full rounded-md px-2 py-1 text-xs outline-none" data-status="not_planned" style="background:#08182f;color:#fff;border:1px solid rgba(255,0,127,0.55);"><option value="already_built">Already Built</option><option value="in_progress">In Progress</option><option value="not_planned" selected="">Future Step</option></select></div><div><label class="theme-notes-label block text-[10px] font-bold uppercase tracking-wider mb-0.5" style="color:#B4B9C0;">Rationale</label><textarea class="theme-notes w-full rounded-md px-2.5 py-2 text-xs min-h-[7.5rem] max-h-[14rem] outline-none resize-y overflow-y-auto" rows="6" style="background:#08182f;border:1px solid rgba(255,255,255,0.12);color:#FFFFFF;" placeholder="">Once we evolve the Check-In experience, our next step is to revisit the Calibration module. </textarea></div></div><button type="button" class="theme-toggle-btn mt-2 w-full rounded-md px-2 py-1 text-xs font-semibold transition hover:brightness-110" style="background:rgba(2,200,255,0.12);border:1px solid rgba(2,200,255,0.4);color:#02C8FF;" aria-expanded="false">View Responses ▾</button><div class="theme-responses-panel" aria-hidden="true"><ul class="space-y-2 mt-2 max-h-[70vh] overflow-y-auto pr-1 list-none"><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="0">Visibility into team and org talent planning. Any changes?</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="1">Don't have a separate talent assessment module from org/team talent planning</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="2">Having the talent assessment and focal be closer together so that the assessment cycle doesn't feel like it is always on</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="3">A use case scenario end to end (starting from reflection all the way to TR and team and org planning)</li><li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="4">Understanding on if we are shifting to measuring / rewarding potential or performance?</li></ul></div></article></div></div></div></div>
+          <p id="themes-empty" class="text-sm italic hidden" style="color:#B4B9C0;">No themes to display.</p>
+        </div>
+
+        <aside id="scores-sidebar" class="pp-card rounded-xl p-6 lg:p-7 w-full lg:w-80 shrink-0 flex flex-col gap-5 lg:sticky lg:top-24 lg:self-start">
+          <h3 class="text-lg font-bold mb-2" style="color:#02C8FF;">Training survey scores</h3>
+          <p id="scores-intro" class="text-sm mb-6 max-w-xl" style="color:#B4B9C0;">Average scores from the poll export.</p>
+          <div id="ratings-container" class="flex flex-col gap-8"><div class="flex-shrink-0"><p class="text-sm leading-snug mb-3 font-normal" style="color:#B4B9C0;">I understand the Q4 updates.</p><p class="text-5xl font-bold tabular-nums tracking-tight leading-none" style="color:#02C8FF;">4.5/5</p></div><div class="flex-shrink-0"><p class="text-sm leading-snug mb-3 font-normal" style="color:#B4B9C0;">I understand where to get support if needed.</p><p class="text-5xl font-bold tabular-nums tracking-tight leading-none" style="color:#02C8FF;">4.7/5</p></div><div class="flex-shrink-0"><p class="text-sm leading-snug mb-3 font-normal" style="color:#B4B9C0;">The listening results and support discussion was a valuable use of my time.</p><p class="text-5xl font-bold tabular-nums tracking-tight leading-none" style="color:#02C8FF;">4.7/5</p></div></div>
+          <p id="ratings-empty" class="text-sm italic mt-4 hidden" style="color:#B4B9C0;">No rating rows detected.</p>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <script>
+(function () {
+  'use strict';
+
+  /** Canonical themes — verbatim responses; no auto-clustering */
+  const FIXED_THEMES = [
+    {
+      id: 'theme-1',
+      title: 'Clearer, More Practical Communications & Guidance',
+      summary: 'Requests for simpler, more direct, and actionable guidance — less jargon-heavy and lengthy content.',
+      examples: [
+        'Extremely crisp instructions/support on how to complete and monitor your data vs lengthy, multiple sources that can lean \'aspirational\' or hr-coded rather than need-to-know/practical/user friendly',
+        'More concise comms to Leaders (including potentially a one pager cheat sheet?). They often come to Peeps directly for questions first because guides are lengthy',
+        'Clearer comms to Leaders',
+        'Clarity on comms being sent to Leaders, like NME removals and MYA exceptions',
+        'There is an opportunity to figure out the change management, comms, etc. in a more simple way. This is where there is often churn.'
+      ]
+    },
+    {
+      id: 'theme-2',
+      title: 'Increased Transparency on Program Changes',
+      summary: 'Leaders and partners need more visibility into why program decisions are made and how employee needs are incorporated.',
+      examples: [
+        'Having more on the \'why\' on how program decisions are made in service to the business',
+        'More clarity to the business in how we are listening to and solving for their needs/asks via the program',
+        'Ensuring the needs and voice of the business are represented and incorporated',
+        'Business alignment and clear actions related to talent definitions',
+        'More advance notice of changes to definitions and processes',
+        'Need changes to feel different to managers to show progress and that we are listening to front line leaders'
+      ]
+    },
+    {
+      id: 'theme-3',
+      title: 'Clearer Definitions & Consistent Program Rules',
+      summary: 'Ambiguity in labels like CTR and NME, inconsistent rule enforcement, and the need for sharper, consistently applied definitions.',
+      examples: [
+        'Need to be clearer with leaders on what the labels like CTR will mean (e.g. stock prioritization)',
+        'CTR wasn\'t marked as required and sometimes blank and the 20% isn\'t forced so requires rework',
+        'Guidance and more robust definitions of what NME is and is not - for leaders in the Talent Assessment and/or FAQs',
+        'Clarity of the conversations and NME guidance',
+        'Not going back when we say no MYE/EOY exceptions',
+        'Critical to retain helps, but still feel like there\'s a gap in understanding where people stand with performance and CTR doesn\'t capture full story'
+      ]
+    },
+    {
+      id: 'theme-4',
+      title: 'Stronger Team & Org Talent Planning and Rewards Connection',
+      summary: 'Better visibility into talent planning, assessment cycles, and org changes — with more advance notice and end-to-end context.',
+      examples: [
+        'Visibility into team and org talent planning. Any changes?',
+        'Don\'t have a separate talent assessment module from org/team talent planning',
+        'Having the talent assessment and focal be closer together so that the assessment cycle doesn\'t feel like it is always on',
+        'A use case scenario end to end (starting from reflection all the way to TR and team and org planning)',
+        'Understanding on if we are shifting to measuring / rewarding potential or performance?'
+      ]
+    },
+    {
+      id: 'theme-5',
+      title: 'Tooling, Automation & Reporting',
+      summary: 'Requests to reduce manual work through automation, better dashboards, and improved tooling for talent review and status reporting.',
+      examples: [
+        'Automated reports or reminders with % completion to at least director plus level would be helpful',
+        'Talent Review digitization and tooling',
+        'Automate the status reports so they stop asking me to pull updates of who submitted or make it really clear where dashboards are',
+        'Moving talent assessments post manager change was impossible - the support teams wouldn\'t help make exceptions',
+        'Access to spot check whether the reviews were impactful',
+        'It feels like a check box exercise and in some ways Circuit makes it worse. Lots of words and the experience is not great for the team members'
+      ]
+    },
+    {
+      id: 'theme-6',
+      title: 'People Partner Role Clarity & Workload',
+      summary: 'PPs are owning too much of the process and want to operate more as consultants, with better cross-P&C integration and easier access to support.',
+      examples: [
+        'Lighter lift for people partners - it feels that we own comms, change management, tool support, and strategy. We own way too much of the process. Would love for our role to be more as a consultant',
+        'Better connection to other P&C actions. For example, embedding inclusion verbiage and rewards language to performance comms and FAQs. Helping us show up as 1 P&C',
+        'A \'phone a friend\' for questions instead of a form or asking Circuit'
+      ]
+    }
+  ];
+
+  function cloneDefaultThemes() {
+    return FIXED_THEMES.map(function (def) {
+      return {
+        id: def.id,
+        title: def.title,
+        summary: def.summary,
+        examples: def.examples.slice(),
+        status: 'in_progress',
+        notes: ''
+      };
+    });
+  }
+
+  const STATUS_OPTIONS = [
+    { value: 'already_built', label: 'Already Built' },
+    { value: 'in_progress', label: 'In Progress' },
+    { value: 'not_planned', label: 'Future Step' }
+  ];
+
+  const NOTES_LABELS = {
+    already_built: 'Where to find it',
+    in_progress: 'Expected release timing',
+    not_planned: 'Rationale'
+  };
+
+  const NOTES_LABELS_STAKEHOLDER = {
+    already_built: 'Where you can find it',
+    in_progress: 'Expected Timing',
+    not_planned: 'Rationale'
+  };
+
+  let csvText = '';
+  let parsedRows = [];
+  let themes = []; // { id, title, summary, examples[], status, notes }
+  let ratings = []; // { question, avg, totalVotes, countsByOption, rows }
+  let finalized = false;
+  /** Three-column stakeholder layout without permanent lock */
+  let previewMode = false;
+
+  function parseCSV(text) {
+    const rows = [];
+    let i = 0;
+    const len = text.length;
+    while (i < len) {
+      const row = [];
+      while (i < len) {
+        let cell = '';
+        if (text[i] === '"') {
+          i++;
+          while (i < len) {
+            if (text[i] === '"') {
+              if (text[i + 1] === '"') { cell += '"'; i += 2; continue; }
+              i++; break;
+            }
+            cell += text[i++];
+          }
+        } else {
+          while (i < len && text[i] !== ',' && text[i] !== '\n' && text[i] !== '\r') cell += text[i++];
+        }
+        row.push(cell);
+        if (text[i] === ',') { i++; continue; }
+        if (text[i] === '\r') i++;
+        if (text[i] === '\n') { i++; break; }
+        if (i >= len) break;
+      }
+      if (row.length && !(row.length === 1 && row[0] === '')) rows.push(row);
+    }
+    return rows;
+  }
+
+  function normalizeHeaderRow(rows) {
+    if (!rows.length) return { headers: [], dataRows: [] };
+    const first = rows[0].map(function (h) { return String(h).trim().toLowerCase(); });
+    const looksLikeHeader = first.some(function (h) {
+      return h.includes('poll') || h.includes('question') || h.includes('option');
+    });
+    if (looksLikeHeader) {
+      return { headers: rows[0], dataRows: rows.slice(1) };
+    }
+    return { headers: ['Poll Question', 'Poll Option', 'Count', 'Total Votes', 'Results'], dataRows: rows };
+  }
+
+  function isRatingRow(cols) {
+    if (cols.length < 5) return false;
+    const results = String(cols[4] || '').trim();
+    if (results === '') return false;
+    const num = parseFloat(results.replace(',', '.'));
+    if (isNaN(num)) return false;
+    const q = String(cols[0] || '').trim();
+    const opt = String(cols[1] || '').trim();
+    // Open-ended: long option text and empty results — already excluded by results
+    // Rating rows: short numeric option (Likert) or empty option with avg only
+    const optNum = parseFloat(opt.replace(',', '.'));
+    const looksLikert = !isNaN(optNum) && optNum >= 1 && optNum <= 10 && String(opt).length <= 3;
+    const shortQuestion = q.length < 200;
+    return shortQuestion && (looksLikert || opt === '');
+  }
+
+  function processData(rows, preserveThemes) {
+    const norm = normalizeHeaderRow(rows);
+    parsedRows = norm.dataRows;
+
+    const ratingMap = {};
+
+    norm.dataRows.forEach(function (cols) {
+      if (cols.length < 2) return;
+      if (isRatingRow(cols)) {
+        const q = String(cols[0]).trim();
+        if (!ratingMap[q]) ratingMap[q] = [];
+        ratingMap[q].push({
+          question: q,
+          pollOption: String(cols[1]).trim(),
+          count: parseInt(cols[2], 10) || 0,
+          totalVotes: parseInt(cols[3], 10) || 0,
+          results: String(cols[4]).trim()
+        });
+        return;
+      }
+    });
+
+    ratings = Object.keys(ratingMap).map(function (q) {
+      var rrows = ratingMap[q];
+      var weightedSum = 0;
+      var countSum = 0;
+      var totalVotes = 0;
+      var byOpt = {};
+      var optKeys = {};
+      rrows.forEach(function (r) {
+        var optVal = parseFloat(String(r.pollOption).replace(',', '.'));
+        var c = parseInt(r.count, 10) || 0;
+        if (!isNaN(optVal) && optVal >= 1 && c > 0) {
+          weightedSum += optVal * c;
+          countSum += c;
+          byOpt[r.pollOption] = (byOpt[r.pollOption] || 0) + c;
+          optKeys[String(r.pollOption)] = true;
+        }
+        totalVotes = Math.max(totalVotes, parseInt(r.totalVotes, 10) || 0);
+      });
+      var distinctOpts = Object.keys(optKeys).length;
+      var reported = parseFloat(String(rrows[0].results || '').replace(',', '.'));
+      var avg = null;
+      if (distinctOpts >= 2 && countSum > 0) {
+        avg = weightedSum / countSum;
+      } else if (!isNaN(reported)) {
+        avg = reported;
+      } else if (countSum > 0) {
+        avg = weightedSum / countSum;
+      }
+
+      return {
+        question: q,
+        average: avg,
+        totalVotes: totalVotes || countSum,
+        responseCount: totalVotes || countSum,
+        byOption: byOpt,
+        rawRows: rrows
+      };
+    });
+
+    if (!preserveThemes || !themes.length) {
+      themes = cloneDefaultThemes();
+    }
+
+    renderAll();
+  }
+
+  function themeResponsesInnerHtml(t, editable) {
+    var list = t.examples || [];
+    return list.map(function (line, ei) {
+      if (editable) {
+        return '<li class="text-xs pl-2 border-l-2 example-edit outline-none leading-snug" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;" contenteditable="true" data-example-index="' + ei + '">' + escapeHtml(line) + '</li>';
+      }
+      return '<li class="text-xs leading-snug mb-1.5 pl-2 border-l-2" style="border-color:rgba(2,200,255,0.35);color:#E8EAED;">' + escapeHtml(line) + '</li>';
+    }).join('');
+  }
+
+  function mergeImportedThemes(imported) {
+    var defById = {};
+    FIXED_THEMES.forEach(function (d) { defById[d.id] = d; });
+    return imported.map(function (th) {
+      var def = defById[th.id];
+      var title = (th.title != null && String(th.title).trim() !== '') ? String(th.title) : (def ? def.title : '');
+      var summary = (th.summary != null && String(th.summary).trim() !== '') ? String(th.summary) : (def ? def.summary : '');
+      var examples = Array.isArray(th.examples) && th.examples.length
+        ? th.examples.map(function (e) { return String(e); })
+        : (def ? def.examples.slice() : []);
+      var status = th.status === 'already_built' || th.status === 'in_progress' || th.status === 'not_planned'
+        ? th.status
+        : 'in_progress';
+      var notes = '';
+      if (typeof th.notes === 'string') notes = th.notes;
+      else if (th.notes != null && typeof th.notes !== 'object') notes = String(th.notes);
+      return {
+        id: th.id,
+        title: title,
+        summary: summary,
+        examples: examples,
+        status: status,
+        notes: notes
+      };
+    });
+  }
+
+  function bindThemeCardInteractions(card, t) {
+    var readOnly = finalized || previewMode;
+    var btn = card.querySelector('.theme-toggle-btn');
+    var panel = card.querySelector('.theme-responses-panel');
+    if (btn && panel) {
+      btn.addEventListener('click', function () {
+        var open = panel.classList.toggle('is-expanded');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+        btn.textContent = open ? 'Hide Responses ▴' : 'View Responses ▾';
+      });
+    }
+    if (readOnly) return;
+    var sel = card.querySelector('.theme-status');
+    var notesEl = card.querySelector('.theme-notes');
+    var notesLabel = card.querySelector('.theme-notes-label');
+    if (sel) {
+      sel.addEventListener('change', function () {
+        syncDocumentIntoThemes();
+        var nt = themes.find(function (x) { return x.id === t.id; });
+        var st = nt ? nt.status : sel.value;
+        sel.setAttribute('style', statusSelectStyle(st));
+        sel.setAttribute('data-status', st);
+        if (nt && notesLabel) notesLabel.textContent = NOTES_LABELS[nt.status] || 'Notes';
+      });
+    }
+    if (notesEl) {
+      notesEl.addEventListener('input', syncDocumentIntoThemes);
+      notesEl.addEventListener('blur', syncDocumentIntoThemes);
+    }
+    var titleEl = card.querySelector('.theme-title-edit');
+    if (titleEl) titleEl.addEventListener('input', syncDocumentIntoThemes);
+    var summaryEl = card.querySelector('.theme-summary-edit');
+    if (summaryEl) summaryEl.addEventListener('input', syncDocumentIntoThemes);
+    card.querySelectorAll('.example-edit').forEach(function (el) {
+      el.addEventListener('input', syncDocumentIntoThemes);
+    });
+  }
+
+  function statusSelectStyle(status) {
+    var bg = 'background:#08182f;color:#fff;';
+    if (status === 'already_built') return bg + 'border:1px solid rgba(2,200,255,0.55);';
+    if (status === 'not_planned') return bg + 'border:1px solid rgba(255,0,127,0.55);';
+    return bg + 'border:1px solid rgba(255,144,0,0.55);';
+  }
+
+  function themeCardStakeholderInner(t, editableResponses) {
+    var summaryText = t.summary != null ? t.summary : '';
+    var notesHeading = NOTES_LABELS_STAKEHOLDER[t.status || 'in_progress'] || 'Notes';
+    var responsesBlock =
+      '<div class="theme-responses-panel" aria-hidden="true">' +
+      '<ul class="space-y-2 mt-2 max-h-[70vh] overflow-y-auto pr-1 list-none">' +
+      themeResponsesInnerHtml(t, editableResponses) +
+      '</ul></div>';
+    var toggleBtn =
+      '<button type="button" class="theme-toggle-btn mt-2 w-full rounded-md px-2 py-1 text-xs font-semibold transition hover:brightness-110" ' +
+      'style="background:rgba(2,200,255,0.12);border:1px solid rgba(2,200,255,0.4);color:#02C8FF;" aria-expanded="false">' +
+      'View Responses ▾</button>';
+    return (
+      '<h3 class="text-sm font-bold mb-1 leading-tight line-clamp-2" style="color:#02C8FF;">' + escapeHtml(t.title) + '</h3>' +
+      '<p class="text-xs leading-relaxed mb-1.5" style="color:#B4B9C0;">' + escapeHtml(summaryText) + '</p>' +
+      '<div class="rounded-lg px-3 py-2.5 mb-1 min-h-[5.5rem]" style="background:rgba(0,0,0,0.28);border:1px solid rgba(255,255,255,0.1);">' +
+      '<p class="text-[10px] font-bold uppercase tracking-wider mb-1" style="color:#B4B9C0;">' + escapeHtml(notesHeading) + '</p>' +
+      '<p class="theme-notes-display text-xs leading-relaxed whitespace-pre-wrap" style="color:#FFFFFF;">' + escapeHtml(t.notes || '—') + '</p></div>' +
+      toggleBtn +
+      responsesBlock
+    );
+  }
+
+  function renderThemesKanban(container) {
+    var columns = [
+      { status: 'already_built', title: 'Already Built', color: '#02C8FF', border: 'rgba(2, 200, 255, 0.55)' },
+      { status: 'in_progress', title: 'In Progress', color: '#FF9000', border: 'rgba(255, 144, 0, 0.55)' },
+      { status: 'not_planned', title: 'Future Step', color: '#FF007F', border: 'rgba(255, 0, 127, 0.55)' }
+    ];
+    var wrap = document.createElement('div');
+    wrap.className = 'flex flex-col gap-5';
+    var editableResponses = false;
+
+    columns.forEach(function (col) {
+      var section = document.createElement('div');
+      section.className = 'pp-kanban-column flex flex-col gap-3';
+      section.setAttribute('data-status', col.status);
+
+      var head = document.createElement('div');
+      head.className = 'kanban-col-title w-full';
+      head.style.color = col.color;
+      head.style.borderBottomColor = col.border;
+      head.textContent = col.title;
+
+      var cardsRow = document.createElement('div');
+      cardsRow.className = 'flex flex-nowrap gap-2 w-full min-w-0 items-stretch overflow-x-auto pb-0';
+
+      var list = themes.filter(function (th) { return (th.status || 'in_progress') === col.status; });
+      list.forEach(function (t) {
+        var card = document.createElement('article');
+        card.className = 'pp-card rounded-lg px-3 py-2.5 flex-shrink-0 w-[232px] sm:w-[252px] lg:w-[268px]';
+        card.setAttribute('data-theme-id', t.id);
+        card.innerHTML = themeCardStakeholderInner(t, editableResponses);
+        cardsRow.appendChild(card);
+        bindThemeCardInteractions(card, t);
+      });
+
+      section.appendChild(head);
+      section.appendChild(cardsRow);
+      wrap.appendChild(section);
+    });
+
+    container.appendChild(wrap);
+  }
+
+  function renderThemesEdit(container) {
+    var columns = [
+      { status: 'already_built', title: 'Already Built', color: '#02C8FF', border: 'rgba(2, 200, 255, 0.55)' },
+      { status: 'in_progress', title: 'In Progress', color: '#FF9000', border: 'rgba(255, 144, 0, 0.55)' },
+      { status: 'not_planned', title: 'Future Step', color: '#FF007F', border: 'rgba(255, 0, 127, 0.55)' }
+    ];
+    var wrap = document.createElement('div');
+    wrap.className = 'flex flex-col gap-5';
+
+    columns.forEach(function (col) {
+      var section = document.createElement('div');
+      section.className = 'pp-kanban-column flex flex-col gap-3';
+      section.setAttribute('data-status', col.status);
+
+      var head = document.createElement('div');
+      head.className = 'kanban-col-title w-full';
+      head.style.color = col.color;
+      head.style.borderBottomColor = col.border;
+      head.textContent = col.title;
+
+      var cardsRow = document.createElement('div');
+      cardsRow.className = 'flex flex-nowrap gap-2 w-full min-w-0 items-stretch overflow-x-auto pb-0';
+
+      var list = themes.filter(function (th) { return (th.status || 'in_progress') === col.status; });
+      list.forEach(function (t) {
+        var card = document.createElement('article');
+        card.className = 'pp-card rounded-lg px-3 py-2.5 flex-shrink-0 w-[232px] sm:w-[252px] lg:w-[268px]';
+        card.setAttribute('data-theme-id', t.id);
+
+        var labelNotes = NOTES_LABELS[t.status] || 'Notes';
+        var summaryText = t.summary != null ? t.summary : '';
+
+        var responsesBlock =
+          '<div class="theme-responses-panel" aria-hidden="true">' +
+          '<ul class="space-y-2 mt-2 max-h-[70vh] overflow-y-auto pr-1 list-none">' +
+          themeResponsesInnerHtml(t, true) +
+          '</ul></div>';
+
+        var toggleBtn =
+          '<button type="button" class="theme-toggle-btn mt-2 w-full rounded-md px-2 py-1 text-xs font-semibold transition hover:brightness-110" ' +
+          'style="background:rgba(2,200,255,0.12);border:1px solid rgba(2,200,255,0.4);color:#02C8FF;" aria-expanded="false">' +
+          'View Responses ▾</button>';
+
+        card.innerHTML =
+          '<h3 class="text-sm font-bold theme-title-edit outline-none mb-1 border-b border-transparent hover:border-cyan-500/40 focus:border-cyan-400 pb-0.5 leading-tight" style="color:#02C8FF;" contenteditable="true">' + escapeHtml(t.title) + '</h3>' +
+          '<p class="text-xs theme-summary-edit outline-none mb-1.5 leading-snug border border-transparent hover:border-white/10 rounded px-1 -mx-1 py-0.5 focus:border-cyan-400/50" style="color:#B4B9C0;" contenteditable="true">' + escapeHtml(summaryText) + '</p>' +
+          '<div class="grid sm:grid-cols-2 gap-1.5 mb-1">' +
+          '<div><label class="block text-[10px] font-bold uppercase tracking-wider mb-0.5" style="color:#B4B9C0;">Status</label>' +
+          '<select class="theme-status w-full rounded-md px-2 py-1 text-xs outline-none" data-status="' + escapeHtml(t.status) + '" style="' + statusSelectStyle(t.status) + '">' +
+          STATUS_OPTIONS.map(function (o) {
+            return '<option value="' + o.value + '"' + (t.status === o.value ? ' selected' : '') + '>' + escapeHtml(o.label) + '</option>';
+          }).join('') +
+          '</select></div>' +
+          '<div><label class="theme-notes-label block text-[10px] font-bold uppercase tracking-wider mb-0.5" style="color:#B4B9C0;">' + escapeHtml(labelNotes) + '</label>' +
+          '<textarea class="theme-notes w-full rounded-md px-2.5 py-2 text-xs min-h-[7.5rem] max-h-[14rem] outline-none resize-y overflow-y-auto" rows="6" style="background:#08182f;border:1px solid rgba(255,255,255,0.12);color:#FFFFFF;" placeholder="">' + escapeHtml(t.notes) + '</textarea></div></div>' +
+          toggleBtn +
+          responsesBlock;
+
+        cardsRow.appendChild(card);
+        bindThemeCardInteractions(card, t);
+      });
+
+      section.appendChild(head);
+      section.appendChild(cardsRow);
+      wrap.appendChild(section);
+    });
+
+    container.appendChild(wrap);
+  }
+
+  function renderThemes() {
+    var container = document.getElementById('themes-container');
+    var empty = document.getElementById('themes-empty');
+    var kanban = previewMode || finalized;
+    if (!kanban && container && container.querySelector('article.pp-card')) {
+      syncDocumentIntoThemes();
+    }
+    container.innerHTML = '';
+    if (!themes.length) {
+      empty.classList.remove('hidden');
+      return;
+    }
+    empty.classList.add('hidden');
+
+    if (kanban) {
+      renderThemesKanban(container);
+    } else {
+      renderThemesEdit(container);
+    }
+  }
+
+  /** Pull every editable value from the live DOM into the themes model (edit + preview/kanban). */
+  function syncDocumentIntoThemes() {
+    var container = document.getElementById('themes-container');
+    if (!container) return;
+    var editMode = !previewMode && !finalized;
+
+    if (!editMode) {
+      container.querySelectorAll('.pp-kanban-column[data-status]').forEach(function (col) {
+        var st = col.getAttribute('data-status');
+        if (!st) return;
+        col.querySelectorAll('article[data-theme-id]').forEach(function (card) {
+          var id = card.getAttribute('data-theme-id');
+          var th = themes.find(function (x) { return x.id === id; });
+          if (th) th.status = st;
+        });
+      });
+    }
+
+    container.querySelectorAll('article[data-theme-id]').forEach(function (card) {
+      var id = card.getAttribute('data-theme-id');
+      var th = themes.find(function (x) { return x.id === id; });
+      if (!th) return;
+
+      var titleEl = card.querySelector('.theme-title-edit');
+      if (titleEl) {
+        var nt = titleEl.textContent.trim();
+        if (nt) th.title = nt;
+      }
+
+      var summaryEl = card.querySelector('.theme-summary-edit');
+      if (summaryEl) th.summary = summaryEl.textContent.trim();
+
+      var sel = card.querySelector('.theme-status');
+      if (sel) th.status = sel.value;
+
+      var notesTa = card.querySelector('textarea.theme-notes');
+      if (notesTa) {
+        th.notes = notesTa.value;
+      } else {
+        var notesDisp = card.querySelector('.theme-notes-display');
+        if (notesDisp) {
+          var raw = notesDisp.textContent;
+          th.notes = raw === '\u2014' ? '' : raw;
+        }
+      }
+
+      if (!Array.isArray(th.examples)) th.examples = [];
+      card.querySelectorAll('.example-edit').forEach(function (el) {
+        var i = parseInt(el.getAttribute('data-example-index'), 10);
+        if (isNaN(i)) return;
+        while (th.examples.length <= i) th.examples.push('');
+        th.examples[i] = el.textContent.trim();
+      });
+    });
+  }
+
+  function renderRatings() {
+    var container = document.getElementById('ratings-container');
+    var empty = document.getElementById('ratings-empty');
+    if (!container) return;
+    container.innerHTML = '';
+    container.className = 'flex flex-col gap-8';
+
+    if (!ratings.length) {
+      if (empty) empty.classList.remove('hidden');
+      return;
+    }
+    if (empty) empty.classList.add('hidden');
+
+    ratings.forEach(function (r) {
+      var avg = r.average != null ? Number(r.average) : 0;
+      var scoreStr = (avg.toFixed ? avg.toFixed(1) : String(avg)) + '/5';
+      var block = document.createElement('div');
+      block.className = 'flex-shrink-0';
+      var qCls = 'text-sm leading-snug mb-3 font-normal';
+      var sCls = 'text-5xl font-bold tabular-nums tracking-tight leading-none';
+      block.innerHTML =
+        '<p class="' + qCls + '" style="color:#B4B9C0;">' + escapeHtml(r.question) + '</p>' +
+        '<p class="' + sCls + '" style="color:#02C8FF;">' + escapeHtml(scoreStr) + '</p>';
+      container.appendChild(block);
+    });
+  }
+
+  function applyLayoutMode() {
+    var layout = document.getElementById('themes-ratings-layout');
+    var col = document.getElementById('themes-column');
+    var sidebar = document.getElementById('scores-sidebar');
+    if (!layout || !col || !sidebar) return;
+
+    layout.className = 'flex flex-col lg:flex-row lg:items-start gap-10 lg:gap-8 xl:gap-10 max-w-full';
+    col.className = 'min-w-0 flex-1 lg:pr-2';
+    sidebar.className =
+      'pp-card rounded-xl p-6 lg:p-7 w-full lg:w-80 shrink-0 flex flex-col gap-5 lg:sticky lg:top-24 lg:self-start';
+  }
+
+  function renderAll() {
+    renderThemes();
+    renderRatings();
+    applyLayoutMode();
+    applyChromeUI();
+  }
+
+  function updateSection1Intro() {
+    var intro = document.getElementById('section1-intro');
+    if (!intro) return;
+    intro.textContent = 'View the themes of support requests by status - Already Built, In Progress, or Future Step. Each theme has a summary and comments from the Performance team.';
+  }
+
+  function applyChromeUI() {
+    var banner = document.getElementById('finalized-banner');
+    var actionBar = document.getElementById('action-bar');
+    var btnSave = document.getElementById('btn-save');
+    var btnPreview = document.getElementById('btn-preview-final');
+    var btnEdit = document.getElementById('btn-edit-mode');
+    var btnLock = document.getElementById('btn-finalize-lock');
+    if (!actionBar || !btnSave || !btnPreview || !btnEdit || !btnLock) return;
+
+    if (finalized) {
+      banner.classList.add('hidden');
+      actionBar.classList.add('hidden');
+    } else {
+      banner.classList.add('hidden');
+      actionBar.classList.remove('hidden');
+      if (previewMode) {
+        btnSave.classList.remove('hidden');
+        btnPreview.classList.add('hidden');
+        btnEdit.classList.remove('hidden');
+        btnLock.classList.remove('hidden');
+      } else {
+        btnSave.classList.remove('hidden');
+        btnPreview.classList.remove('hidden');
+        btnEdit.classList.add('hidden');
+        btnLock.classList.remove('hidden');
+      }
+    }
+
+    updateSection1Intro();
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  /** Read DOM → model, then build the object written as const SAVED_STATE in the file. */
+  function buildSavedStateFromDom() {
+    syncDocumentIntoThemes();
+    return {
+      version: 4,
+      finalized: !!finalized,
+      previewMode: finalized ? false : !!previewMode,
+      csvText: csvText,
+      themes: themes.map(function (t) {
+        return {
+          id: t.id,
+          title: String(t.title != null ? t.title : ''),
+          summary: String(t.summary != null ? t.summary : ''),
+          examples: Array.isArray(t.examples) ? t.examples.map(function (e) { return String(e); }) : [],
+          status: t.status === 'already_built' || t.status === 'in_progress' || t.status === 'not_planned'
+            ? t.status
+            : 'in_progress',
+          notes: String(t.notes != null ? t.notes : '')
+        };
+      }),
+      ratingsSnapshot: JSON.parse(JSON.stringify(ratings))
+    };
+  }
+
+  function serializeSavedStateForInlineScript(state) {
+    return JSON.stringify(state).replace(/</g, '\\u003c');
+  }
+
+  function inlineSavedStateScriptSource(state) {
+    return 'const SAVED_STATE = ' + serializeSavedStateForInlineScript(state) + ';\nconsole.log("State loaded:", SAVED_STATE);';
+  }
+
+  /** Apply payload from SAVED_STATE before any theme rendering. */
+  function applySavedStatePayload(state) {
+    if (!state || typeof state !== 'object' || state === null) return;
+    finalized = !!state.finalized;
+    previewMode = finalized ? false : !!state.previewMode;
+    if (state.csvText) csvText = state.csvText;
+    if (state.themes && state.themes.length) themes = mergeImportedThemes(state.themes);
+    if (state.csvText) {
+      var rows = parseCSV(state.csvText);
+      processData(rows, true);
+    } else {
+      renderAll();
+    }
+    if (state.ratingsSnapshot && Array.isArray(state.ratingsSnapshot) && state.ratingsSnapshot.length) {
+      ratings = state.ratingsSnapshot;
+      renderRatings();
+    }
+  }
+
+  function persistInlineSavedStateToLiveDom(state) {
+    var el = document.getElementById('pp-inline-saved-state');
+    if (!el) return;
+    el.textContent = inlineSavedStateScriptSource(state);
+  }
+
+  function downloadHTMLWithState() {
+    var state = buildSavedStateFromDom();
+    var inner = inlineSavedStateScriptSource(state);
+    persistInlineSavedStateToLiveDom(state);
+    var html = document.documentElement.outerHTML;
+    var re = /<script id=["']pp-inline-saved-state["'][^>]*>[\s\S]*?<\/script>/i;
+    var replacement = '<script id="pp-inline-saved-state">\n' + inner + '\n<\/script>';
+    if (re.test(html)) html = html.replace(re, replacement);
+    else html = html.replace('</body>', '<script id="pp-inline-saved-state">\n' + inner + '\n<\/script>\n</body>');
+    var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'people-partner-support-dashboard-saved.html';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  function showSaveToast() {
+    var toast = document.getElementById('save-toast');
+    if (!toast) return;
+    toast.classList.remove('hidden');
+    clearTimeout(window.__ppSaveToastTimer);
+    window.__ppSaveToastTimer = setTimeout(function () {
+      toast.classList.add('hidden');
+    }, 2600);
+  }
+
+  document.getElementById('btn-save').addEventListener('click', function () {
+    downloadHTMLWithState();
+    showSaveToast();
+  });
+
+  document.getElementById('btn-preview-final').addEventListener('click', function () {
+    syncDocumentIntoThemes();
+    previewMode = true;
+    renderAll();
+  });
+
+  document.getElementById('btn-edit-mode').addEventListener('click', function () {
+    syncDocumentIntoThemes();
+    previewMode = false;
+    renderAll();
+  });
+
+  document.getElementById('btn-finalize-lock').addEventListener('click', function () {
+    if (!confirm('Finalize and lock? A download will start with all notes and content embedded in SAVED_STATE. To edit later, set \u0022finalized\u0022:false in SAVED_STATE at the top of the file.')) return;
+    syncDocumentIntoThemes();
+    previewMode = false;
+    finalized = true;
+    persistInlineSavedStateToLiveDom(buildSavedStateFromDom());
+    renderAll();
+    downloadHTMLWithState();
+  });
+
+  function loadBakedCsvFromDom() {
+    var bakedEl = document.getElementById('baked-csv-data');
+    if (!bakedEl) return;
+    var raw = bakedEl.textContent.replace(/^\uFEFF/, '').replace(/\r\n/g, '\n').trim();
+    if (!raw) return;
+    csvText = raw;
+    processData(parseCSV(csvText), false);
+  }
+
+  // First run: SAVED_STATE from inline script above (or null) — load before default CSV
+  if (typeof SAVED_STATE !== 'undefined' && SAVED_STATE !== null) {
+    applySavedStatePayload(SAVED_STATE);
+  } else {
+    loadBakedCsvFromDom();
+  }
+})();
+  </script>
+
+
+</body></html>
